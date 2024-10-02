@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  omnipilote-assignment-client:
+    image: omnipilote-assignment-client-client
+    container_name: omnipilote-assignment-client
+    build:
+      context: ./client
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./client/src:/app/src
+    environment:
+      - CHOKIDAR_USEPOLLING=true # This is for Windows users
