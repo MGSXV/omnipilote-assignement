@@ -3,14 +3,16 @@ const authentication_handler = (
 	password: string, 
 	result: { username: string, password: string}
 ) => {
-	console.log(result);
-	console.log(username);
-	console.log(password);
 	if (username === result.username && password === result.password) {
 		localStorage.setItem('token', btoa(`${username}${password}`));
 		return true;
 	}
 	return false;
+}
+
+export const logout = () => {
+	localStorage.removeItem('token');
+	window.location.href = '/login';
 }
 
 export default authentication_handler;

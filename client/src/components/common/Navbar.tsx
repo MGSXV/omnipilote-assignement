@@ -4,9 +4,11 @@ import { MdOutlineKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md
 import { IoIosMenu } from "react-icons/io";
 import logo from "../../assets/logo.svg"
 import { cn } from '../../lib/utils';
+import { logout } from '../../lib/authentication_handler';
 
 export default function WithSubnavigation() {
 	const { isOpen, onToggle } = useDisclosure()
+	const is_authenticated = localStorage.getItem('token') ? true : false;
 
 	return (
 		<Box>
@@ -45,23 +47,44 @@ export default function WithSubnavigation() {
 					justify={'flex-end'}
 					direction={'row'}
 					spacing={6}>
-					<Button className='text-black' color={cn('text-black')} _hover={cn('text-gray-700')} as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'/login'}>
-						Sign In
-					</Button>
-					<Button
-						as={'a'}
-						display={{ base: 'none', md: 'inline-flex' }}
-						fontSize={'sm'}
-						fontWeight={600}
-						color={'white'}
-						bg={cn("bg-primary")}
-						className='bg-primary hover:bg-primary-dark'
-						href={'#'}
-						_hover={{
-							bg: cn("bg-primary-dark"),
-						}}>
-						Sign Up
-					</Button>
+					{
+						is_authenticated ? (
+							<Button
+								display={{ base: 'none', md: 'inline-flex' }}
+								fontSize={'sm'}
+								fontWeight={600}
+								color={'white'}
+								bg={cn("bg-primary")}
+								className='bg-primary hover:bg-primary-dark'
+								onClick={logout}
+								_hover={{
+									bg: cn("bg-primary-dark"),
+								}}>
+								Log out
+							</Button>
+						) : (
+							<>
+								<Button className='text-black' color={cn('text-black')} _hover={{ color: cn('text-gray-700') }} as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'/login'}>
+									Sign In
+								</Button>
+								<Button
+									as={'a'}
+									display={{ base: 'none', md: 'inline-flex' }}
+									fontSize={'sm'}
+									fontWeight={600}
+									color={'white'}
+									bg={cn("bg-primary")}
+									className='bg-primary hover:bg-primary-dark'
+									href={'#'}
+									_hover={{
+										bg: cn("bg-primary-dark"),
+									}}>
+									Sign Up
+								</Button>
+							</>
+						)
+					}
+					
 				</Stack>
 			</Flex>
 
