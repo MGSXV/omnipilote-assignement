@@ -31,7 +31,7 @@ const App = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [loginError, setLoginError] = useState<string | null>(null);
-	const [success, setSuccess] = useState(false);
+	const [_success, setSuccess] = useState(false);
 	const toast = useToast();
 
 	const handleShowClick = () => setShowPassword(!showPassword);
