@@ -1,4 +1,4 @@
-# omnipilote-assignement# Project Name
+# omnipilote-assignement
 
 ## How to Use
 
@@ -27,3 +27,6 @@ npm run dev
 ### Features
 - Basic authentication (credentials are hard coded in `/public/data/auth.json`)
 - No input validation yet
+- CRUD operations for the product
+- Unauthorized page
+- Not found page
